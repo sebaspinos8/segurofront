@@ -1,0 +1,858 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 8px;
+  }
+
+  .toolbar #youtube-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover,
+  .toolbar #youtube-logo:hover {
+    opacity: 0.8;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .card {
+    all: unset;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: 40px;
+    width: 200px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 16px;
+    width: 168px;
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  .card.highlight-card {
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+  }
+
+  .card.card.highlight-card span {
+    margin-left: 60px;
+  }
+
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+
+  svg#rocket-smoke {
+    height: calc(100vh - 95px);
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .github-star-badge {
+    color: #24292e;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: 3px;
+    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    margin-left: 4px;
+    font-weight: 600;
+  }
+
+  .github-star-badge:hover {
+    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
+    border-color: rgba(27,31,35,.35);
+    background-position: -.5em;
+  }
+
+  .github-star-badge .material-icons {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+  <span>{{title}}</span>
+    <div class="spacer"></div>
+</div>
+
+
+
+<div class="content" role="main">
+
+  <!-- Highlight Card -->
+  <h2>Funciones Generales</h2>
+   <br>
+   <br>
+
+  <div class="card-container">
+    <a class="card" (click)="open(myModalSeguros)" rel="noopener" >
+      
+      <h4>Mantenimiento Seguros</h4>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
+
+    <a class="card" (click)="open(myModalAsegurados)"  rel="noopener">
+      
+      <h4>Mantenimiento Clientes</h4>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+
+    <a class="card" (click)="open(myModalAsegurar)"  rel="noopener">
+      
+      <h4>Asegurar a Cliente</h4>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    <a class="card" (click)="open(myModalBuscar)"  rel="noopener">
+      
+      <h4>Busquedas</h4>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    
+
+   
+
+   
+    <ng-template #myModalCrearSeguro let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Seguro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="lblNombre">Nombre Seguro: </label>
+          <input type="text" class="form-control" [(ngModel)]="seguroRequest.nombreSeguro" required placeholder="Nombre del Seguro">
+        </div>
+        <div class="form-group">
+          <label for="lblCodigoSeguro">Codigo Seguro:</label>
+          <input type="text" class="form-control" [(ngModel)]="seguroRequest.codigoSeguro" required id="inpIDIn" #txtIDIn placeholder="Codigo de Seguro">
+        </div>
+        <div class="form-group">
+          <label for="lblSumaAsegurada">Suma Asegurada:</label>
+          <input type="text" class="form-control" [(ngModel)]="seguroRequest.sumaAseguradaSeguro" required id="inpIDIn" #txtIDIn placeholder="Suma Asegurada">
+        </div>
+        <div class="form-group">
+          <label for="lblPrima">Prima:</label>
+          <input type="text" class="form-control" [(ngModel)]="seguroRequest.primaSeguro" required id="inpIDIn" #txtIDIn placeholder="Prima">
+        </div>
+      <br>
+        <div class="form-group">
+          <button id="crearSeguro" type="button" (click)="crearSeguro()"  class="form-control btn btn-primary btn-icon-text mb-2 mb-md-0">Crear Seguro</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+    <ng-template #myModalModificarSeguro let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Seguro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="lblNombre">Nombre Seguro: </label>
+          <input type="text" class="form-control" [(ngModel)]="seguroM.nombreSeguro" required placeholder="Nombre del Seguro">
+        </div>
+        <div class="form-group">
+          <label for="lblCodigoSeguro">Codigo Seguro:</label>
+          <input type="text" class="form-control" [(ngModel)]="seguroM.codigoSeguro" required id="inpIDIn" #txtIDIn placeholder="Codigo de Seguro">
+        </div>
+        <div class="form-group">
+          <label for="lblSumaAsegurada">Suma Asegurada:</label>
+          <input type="text" class="form-control" [(ngModel)]="seguroM.sumaAsegurada" required id="inpIDIn" #txtIDIn placeholder="Suma Asegurada">
+        </div>
+        <div class="form-group">
+          <label for="lblPrima">Prima:</label>
+          <input type="text" class="form-control" [(ngModel)]="seguroM.prima" required id="inpIDIn" #txtIDIn placeholder="Prima">
+        </div>
+      <br>
+        <div class="form-group">
+          <button id="crearSeguro" type="button" (click)="modificarSeguro()"  class="form-control btn btn-primary btn-icon-text mb-2 mb-md-0">Modificar Seguro</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+    <ng-template #myModalSeguros let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"><strong>Seguros</strong></h4>
+        <button type="button" id="closeIn" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button id="crearSeguro" type="button" (click)="open(myModalCrearSeguro)"  class="btn btn-primary btn-icon-text mb-2 mb-md-0">Crear Seguro</button>
+        <div class="row d-flex justify-content-between mb-4">
+
+          <div class="table-responsive">
+              <br>
+              <table class="table table-hover mb-0">
+                
+                <thead>
+                    
+                  <h5 class="col-md-12"><strong>Lista de Seguros</strong></h5>
+                  <br>
+                  <tr>
+                    <th class="pt-2"><strong># Id</strong></th>
+                    <th class="pt-0">Nombre</th>
+                    <th class="pt-0">Codigo</th>
+                    <th class="pt-0">Suma Asegurada</th>
+                    <th class="pt-0">Prima</th>
+                    <th class="pt-0">Accion</th>
+                    <th class="pt-0"></th>
+                  </tr>
+                </thead>
+                <tbody>
+      
+                  <tr *ngFor="let seguro of seguroAv;let j = index">
+                    <td class="border-bottom">{{seguro.idSeguro}}</td>
+                    <td class="border-bottom">{{seguro.nombreSeguro}}</td>
+                    <td class="border-bottom">{{seguro.codigoSeguro}}</td>
+                    <td class="border-bottom">{{seguro.sumaAsegurada}}</td>
+                    <td class="border-bottom">{{seguro.prima}}</td>
+                    <!--<td class="border-bottom">{{seguro.reservationInDate | date: 'dd/MM/yyyy' }}</td>-->
+                    
+                    <td class="border-bottom"><button id="seguro{{j}}" (click)="abrirModificarSeguro(myModalModificarSeguro,seguro)" type="button" class="btn btn-warning btn-icon-text mb-2 mb-md-0">Editar</button></td>
+                    <td class="border-bottom"><button id="seguro{{j}}" (click)="eliminarSeguro(seguro.idSeguro)" type="button" class="btn btn-danger btn-icon-text mb-2 mb-md-0">Eliminar</button></td>
+                    
+                  
+                  </tr>
+      
+                </tbody>
+              </table>
+     
+          </div>
+
+      </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </ng-template>
+
+
+
+
+
+    <ng-template #myModalCrearAsegurado let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Asegurado</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="lblNombreA">Nombre Asegurado: </label>
+          <input type="text" class="form-control" [(ngModel)]="aseguradoRequest.nombreAsegurado" required placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <label for="lblced">Cedula Asegurado:</label>
+          <input type="text" class="form-control" [(ngModel)]="aseguradoRequest.cedulaAsegurado" required id="inpIDIn" #txtIDIn placeholder="Cedula">
+        </div>
+        <div class="form-group">
+          <label for="lbltelef">Telefono Asegurado:</label>
+          <input type="text" class="form-control" [(ngModel)]="aseguradoRequest.telefonoAsegurado" required id="inpIDIn" #txtIDIn placeholder="Telefono">
+        </div>
+        <div class="form-group">
+          <label for="lblFecha">Fecha de Nacimiento:</label>
+          <input type="date" [(ngModel)]="aseguradoRequest.fechaNacimiento" required class="form-control" >
+        </div>
+      <br>
+        <div class="form-group">
+          <button id="crearAsegurado" type="button" (click)="crearAsegurado()"  class="form-control btn btn-primary btn-icon-text mb-2 mb-md-0">Crear Asegurado</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+    <ng-template #myModalModificarAsegurado let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Seguro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="lblNombreA">Nombre Asegurado: </label>
+          <input type="text" class="form-control" [(ngModel)]="aseguradoM.nombreAsegurado" required placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <label for="lblced">Cedula Asegurado:</label>
+          <input type="text" class="form-control" [(ngModel)]="aseguradoM.cedulaAsegurado" required id="inpIDIn" #txtIDIn placeholder="Cedula">
+        </div>
+        <div class="form-group">
+          <label for="lbltelef">Telefono Asegurado:</label>
+          <input type="text" class="form-control" [(ngModel)]="aseguradoM.telefonoAsegurado" required id="inpIDIn" #txtIDIn placeholder="Telefono">
+        </div>
+        <div class="form-group">
+          <label for="lblFecha">Fecha de Nacimiento:</label>
+          <input type="date" [(ngModel)]="aseguradoM.fechaNacimiento" required class="form-control" >
+        </div>
+      <br>
+        <div class="form-group">
+          <button id="crearSeguro" type="button" (click)="modificarAsegurado()"  class="form-control btn btn-primary btn-icon-text mb-2 mb-md-0">Modificar Asegurado</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+    <ng-template #myModalAsegurados let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"><strong>Asegurados</strong></h4>
+        <button type="button" id="closeIn" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button id="crearSeguro" type="button" (click)="open(myModalCrearAsegurado)"  class="btn btn-primary btn-icon-text mb-2 mb-md-0">Crear Asegurado</button>
+        <div class="row d-flex justify-content-between mb-4">
+
+          <div class="table-responsive">
+              <br>
+              <table class="table table-hover mb-0">
+                
+                <thead>
+                    
+                  <h5 class="col-md-12"><strong>Lista de Asegurados</strong></h5>
+                  <br>
+                  <tr>
+                    <th class="pt-2"><strong># Id</strong></th>
+                    <th class="pt-0">Nombre</th>
+                    <th class="pt-0">Cedula</th>
+                    <th class="pt-0">Telefono</th>
+                    <th class="pt-0">Fecha de Nacimiento</th>
+                    <th class="pt-0">Accion</th>
+                    <th class="pt-0"></th>
+                  </tr>
+                </thead>
+                <tbody>
+      
+                  <tr *ngFor="let seguro of aseguradoAv;let j = index">
+                    <td class="border-bottom">{{seguro.idAsegurado}}</td>
+                    <td class="border-bottom">{{seguro.nombreAsegurado}}</td>
+                    <td class="border-bottom">{{seguro.cedulaAsegurado}}</td>
+                    <td class="border-bottom">{{seguro.telefonoAsegurado}}</td>
+                    <td class="border-bottom">{{seguro.fechaNacimiento}}</td>
+                    <!--<td class="border-bottom">{{seguro.reservationInDate | date: 'dd/MM/yyyy' }}</td>-->
+                    
+                    <td class="border-bottom"><button id="seguro{{j}}" (click)="abrirModificarAsegurado(myModalModificarAsegurado,seguro)" type="button" class="btn btn-warning btn-icon-text mb-2 mb-md-0">Editar</button></td>
+                    <td class="border-bottom"><button id="seguro{{j}}" (click)="eliminarAsegurado(seguro.idAsegurado)" type="button" class="btn btn-danger btn-icon-text mb-2 mb-md-0">Eliminar</button></td>
+                    
+                  
+                  </tr>
+      
+                </tbody>
+              </table>
+     
+          </div>
+
+      </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </ng-template>
+
+
+
+
+    <ng-template #myModalAsegurar let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"><strong>Asegurar Cliente</strong></h4>
+        <button type="button" id="closeIn" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select class="btn btn-secondary dropdown-toggle" (change)="onEditClick($event)" >
+          <option value="default">Seleccionar Cliente</option>
+          <option *ngFor="let asegurado of aseguradoAv" [value]="asegurado.idAsegurado">{{asegurado.nombreAsegurado}}</option>
+        </select>
+        <div class="row d-flex justify-content-between mb-4">
+
+          <div class="table-responsive">
+
+            
+              <br>
+              <table class="table table-hover mb-0">
+                
+                <thead>
+                    
+                  <h5 class="col-md-12"><strong>Seguros Disponibles para Asociar</strong></h5>
+                  <br>
+                  <tr>
+                    <th class="pt-2"><strong># Id</strong></th>
+                    <th class="pt-0">Nombre</th>
+                    <th class="pt-0">Codigo</th>
+                    <th class="pt-0">Suma Asegurada</th>
+                    <th class="pt-0">Prima</th>
+                    <th class="pt-0">Accion</th>
+                    <th class="pt-0"></th>
+                  </tr>
+                </thead>
+                <tbody>
+      
+                  <tr *ngFor="let seguro of disponibles;let j = index">
+                    <td class="border-bottom">{{seguro.idSeguro}}</td>
+                    <td class="border-bottom">{{seguro.nombreSeguro}}</td>
+                    <td class="border-bottom">{{seguro.codigoSeguro}}</td>
+                    <td class="border-bottom">{{seguro.sumaAsegurada}}</td>
+                    <td class="border-bottom">{{seguro.prima}}</td>
+                    <!--<td class="border-bottom">{{seguro.reservationInDate | date: 'dd/MM/yyyy' }}</td>-->
+                    
+                    <td class="border-bottom"><button id="seguro{{j}}" (click)="agregarSeguroAsegurado(cliente,seguro.idSeguro)" type="button" class="btn btn-success btn-icon-text mb-2 mb-md-0">Agregar</button></td>
+                    
+                    
+                  
+                  </tr>
+      
+                </tbody>
+              </table>
+     
+          </div>
+
+      </div>
+
+      <div class="row d-flex justify-content-between mb-4">
+
+        <div class="table-responsive">
+
+          
+            <br>
+            <table class="table table-hover mb-0">
+              
+              <thead>
+                  
+                <h5 class="col-md-12"><strong>Seguros Ya Asociados</strong></h5>
+                <br>
+                <tr>
+                  <th class="pt-2"><strong># Id</strong></th>
+                  <th class="pt-0">Nombre</th>
+                  <th class="pt-0">Codigo</th>
+                  <th class="pt-0">Suma Asegurada</th>
+                  <th class="pt-0">Prima</th>
+                  <th class="pt-0">Accion</th>
+                  <th class="pt-0"></th>
+                </tr>
+              </thead>
+              <tbody>
+    
+                <tr *ngFor="let seguro of noDisponibles;let j = index">
+                  <td class="border-bottom">{{seguro.idSeguro}}</td>
+                  <td class="border-bottom">{{seguro.nombreSeguro}}</td>
+                  <td class="border-bottom">{{seguro.codigoSeguro}}</td>
+                  <td class="border-bottom">{{seguro.sumaAsegurada}}</td>
+                  <td class="border-bottom">{{seguro.prima}}</td>
+                  <!--<td class="border-bottom">{{seguro.reservationInDate | date: 'dd/MM/yyyy' }}</td>-->
+                  
+                
+                  <td class="border-bottom"><button id="seguro{{j}}" (click)="eliminarSeguroAsegurado(cliente,seguro.idSeguro)" type="button" class="btn btn-danger btn-icon-text mb-2 mb-md-0">Eliminar</button></td>
+                  
+                
+                </tr>
+    
+              </tbody>
+            </table>
+   
+        </div>
+
+    </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </ng-template>
+
+    <ng-template #myModalBuscar let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"><strong>Asegurar Cliente</strong></h4>
+        <button type="button" id="closeIn" class="close" aria-label="Close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="lblNombre">Cedula a buscar: </label>
+          <input type="text" class="form-control" [(ngModel)]="cedulaBuscar" required placeholder="Cedula del Asociado">
+        </div>
+        <div class="row d-flex justify-content-between mb-4">
+
+          <div class="table-responsive">
+            <br>
+            <button type="button" id="closeIn" class="btn btn-primary" (click)="buscarCedula()">Buscar Seguros</button>
+              <br>
+            
+              <br>
+              <table class="table table-hover mb-0">
+                
+                <thead>
+                    
+                  <h5 class="col-md-12"><strong>Seguros Asociados a la Cedula</strong></h5>
+                  <br>
+                  <tr>
+                    <th class="pt-2"><strong># Id</strong></th>
+                    <th class="pt-0">Nombre</th>
+                    <th class="pt-0">Codigo</th>
+                    <th class="pt-0">Suma Asegurada</th>
+                    <th class="pt-0">Prima</th>
+                  </tr>
+                </thead>
+                <tbody>
+      
+                  <tr *ngFor="let seguro of cedulaBusqueda;let j = index">
+                    <td class="border-bottom">{{seguro.idSeguro}}</td>
+                    <td class="border-bottom">{{seguro.nombreSeguro}}</td>
+                    <td class="border-bottom">{{seguro.codigoSeguro}}</td>
+                    <td class="border-bottom">{{seguro.sumaAsegurada}}</td>
+                    <td class="border-bottom">{{seguro.prima}}</td>
+                    <!--<td class="border-bottom">{{seguro.reservationInDate | date: 'dd/MM/yyyy' }}</td>-->
+                  
+                  </tr>
+      
+                </tbody>
+              </table>
+     
+          </div>
+
+      </div>
+
+      <div class="row d-flex justify-content-between mb-4">
+
+
+        <div class="form-group">
+          <label for="lblNombre">Codigo de Seguro a Buscar: </label>
+          <input type="text" class="form-control" [(ngModel)]="codigoBuscar" required placeholder="Codigo de Seguro">
+        </div>
+        <br>
+        
+        <div class="table-responsive">
+          <br>
+          <button type="button" id="closeIn" class="btn btn-primary" (click)="buscarSeguro()">Buscar Asociados</button>
+            <br>
+            <table class="table table-hover mb-0">
+                
+              <thead>
+                  
+                <h5 class="col-md-12"><strong>Lista de Asegurados</strong></h5>
+                <br>
+                <tr>
+                  <th class="pt-2"><strong># Id</strong></th>
+                  <th class="pt-0">Nombre</th>
+                  <th class="pt-0">Cedula</th>
+                  <th class="pt-0">Telefono</th>
+                  <th class="pt-0">Fecha de Nacimiento</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+    
+                <tr *ngFor="let seguro of codigoBusqueda;let j = index">
+                  <td class="border-bottom">{{seguro.idAsegurado}}</td>
+                  <td class="border-bottom">{{seguro.nombreAsegurado}}</td>
+                  <td class="border-bottom">{{seguro.cedulaAsegurado}}</td>
+                  <td class="border-bottom">{{seguro.telefonoAsegurado}}</td>
+                  <td class="border-bottom">{{seguro.fechaNacimiento}}</td>
+                  <!--<td class="border-bottom">{{seguro.reservationInDate | date: 'dd/MM/yyyy' }}</td>-->
+                  
+                 
+                
+                </tr>
+    
+              </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </ng-template>
+  
+
+  </div>
+
+  <!--Fin Seguros-->
+
+
+  
+
+  
+  
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet></router-outlet>
